@@ -1,4 +1,66 @@
-ڈالیں:
+
+New Repository dekh rhi hai
+کوئی مسئلہ نہیں۔ آپ شاید GitHub کے Create Repository والے صفحے پر ہیں۔
+
+ابھی New Repository پر کلک نہ کریں۔
+
+یہ کریں:
+
+اوپر بائیں طرف ☰ Menu دبائیں۔
+
+اپنے Profile پر جائیں۔
+
+Repositories تلاش کریں۔
+
+وہاں Xarena کھولیں۔
+
+یہ لنک بھی آزما سکتے ہیں: GitHub Home
+
+ایک کام کریں: اپنی موجودہ اسکرین کا Screenshot بھیج دیں۔ میں آپ کو بالکل صحیح جگہ بتاؤں گا۔
+
+Agia
+شاباش! 👍 اب Xarena Repository کھولیں۔
+
+.github فولڈر دبائیں۔
+
+workflows فولڈر دبائیں۔
+
+build.yml کھولیں۔
+
+پنسل ✏️ Edit دبائیں۔
+
+اب مجھے بتائیں: کیا build.yml کھل گئی ہے؟
+
+Ap screenshot bhejo do
+معذرت، ابھی تصویر بنانے کی سہولت دستیاب نہیں ہے۔ میں آپ کو آسان طریقے سے سمجھاتا ہوں۔
+
+GitHub میں یہ راستہ کھولیں:
+
+Xarena
+
+.github
+
+workflows
+
+build.yml
+
+Edit
+
+پہلے build.yml کھولیں۔
+
+کیا آپ کو .github فولڈر نظر آ رہا ہے؟
+
+Khul lia
+زبردست! 👍 اب اگلا کام کریں۔
+
+build.yml فائل کھولیں۔
+
+اوپر پنسل ✏️ دبائیں۔
+
+پرانا کوڈ منتخب کرکے ختم کریں۔
+
+یہ نیا کوڈ Paste کریں:
+
 name: Xarena APK Build
 
 on:
@@ -7,13 +69,25 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Check repository
-        run: echo "Xarena repository is ready"
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
 
+      - uses: android-actions/setup-android@v3
 
-پھ
+      - run: sdkmanager "platforms;android-35" "build-tools;35.0.0"
+
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.9'
+
+      - run: gradle assembleDebug
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Xarena-APK
+          path: app/build/outputs/apk/debug/*.apk
