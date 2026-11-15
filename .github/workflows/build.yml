@@ -1,0 +1,19 @@
+ڈالیں:
+name: Xarena APK Build
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Check repository
+        run: echo "Xarena repository is ready"
+
+
+پھ
