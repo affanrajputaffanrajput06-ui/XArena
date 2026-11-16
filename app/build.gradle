@@ -1,4 +1,4 @@
-اپنی app/build.gradle فائل کا پرانا کوڈ ختم کرکے یہ Paste کریں:
+
 
 plugins {
     id 'com.android.application'
