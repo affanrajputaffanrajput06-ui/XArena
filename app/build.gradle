@@ -1,3 +1,5 @@
+اپنی app/build.gradle فائل کا پرانا کوڈ ختم کرکے یہ Paste کریں:
+
 plugins {
     id 'com.android.application'
 }
@@ -15,6 +17,10 @@ android {
     }
 
     buildTypes {
+        debug {
+            minifyEnabled false
+        }
+
         release {
             minifyEnabled false
         }
